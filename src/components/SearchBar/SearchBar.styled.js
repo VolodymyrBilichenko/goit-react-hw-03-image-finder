@@ -14,7 +14,7 @@ export const HeaderSearchBarStye = styled.header`
     padding-top: 12px;
     padding-bottom: 12px;
     color: #fff;
-    background-color: #3f51b5;
+    background-color: #C3A488;
     box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
     margin-bottom: 20px;
 
@@ -28,8 +28,38 @@ export const HeaderSearchBarStye = styled.header`
         overflow: hidden;
     }
 
+    .form{
+        display: flex;
+        align-items: center;
+    }
+
     .button {
-        
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        background: #FFF;
+        padding: 10px 40px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 100%;
+        transition: all .3s;
+        display: flex;
+        margin-right: 10px;
+
+        &:hover{
+            background-color: #ad825c;
+            color: #FFF;
+        }
+    }
+
+    .input{
+        outline: none;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 100%;
+        border-radius: 5px;
     }
 
     .SearchForm-button:hover {
@@ -62,5 +92,5 @@ export const HeaderSearchBarStye = styled.header`
     .SearchForm-input::placeholder {
         font: inherit;
         font-size: 18px;
-        }
+    }
 `

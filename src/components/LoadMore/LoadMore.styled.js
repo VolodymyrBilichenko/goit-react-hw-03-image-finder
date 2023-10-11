@@ -3,8 +3,8 @@ import { styled } from "styled-components";
 export const LoadMoreStyle = styled.button`
     margin: 25px 0;
     padding: 8px 16px;
-    border-radius: 2px;
-    background-color: #3f51b5;
+    border-radius: 5px;
+    background-color: #C3A488;
     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
     color: #fff;
@@ -19,4 +19,10 @@ export const LoadMoreStyle = styled.button`
     min-width: 180px;
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
         0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+        transition: all 0.3s ease;
+
+    &:hover{
+        background-color: #ad825c;
+        color: #FFF;
+    }
 `
