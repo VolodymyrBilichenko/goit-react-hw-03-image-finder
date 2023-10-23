@@ -8,6 +8,7 @@ import { NotFound } from './NotFound/NotFound';
 import { LoadMore } from './LoadMore/LoadMore';
 import { Loading } from './Loading/Loading';
 import { toast } from 'react-toastify';
+import { ImageGalleryPopUp } from './ImageGalleryPopUp/ImageGalleryPopUp';
 
 export class App extends Component {
   state = {
@@ -20,6 +21,9 @@ export class App extends Component {
 
     isLoading: false,
     showNotFound: false,
+
+    largeImageURL: '',
+    showModal: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -74,15 +78,32 @@ export class App extends Component {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
+  };
+
+  onClose = () => {
+    this.setState({ showModal: false });
+  };
+
+  handleImageClick = (largeImageURL ) => {
+    this.setState({largeImageURL, showModal: true});
+    this.toggleModal();
+  }
+
   render() {
-    const { images, showNotFound, isLoading } = this.state;
+    const { images, showNotFound, isLoading, showModal, largeImageURL } = this.state;
     return (
       <>
         <GlobalStyle />
         {isLoading && <Loading />}
+
         <SearchBar onSubmit={this.handleSearch} />
+
         <Container>
-          <ImageGallery imagesLi={images} />
+          <ImageGallery imagesLi={images} onImageClick={this.handleImageClick} />
           {showNotFound && <NotFound />}
 
           {images.length > 0 && (
@@ -91,6 +112,14 @@ export class App extends Component {
               isVisible={!this.state.isLoading}
             />
           )}
+
+          {
+            <ImageGalleryPopUp
+              showModal={showModal}
+              largeImageURL={largeImageURL}
+              onClose={this.onClose}
+            />
+          }
         </Container>
       </>
     );

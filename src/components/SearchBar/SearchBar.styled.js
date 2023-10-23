@@ -45,6 +45,7 @@ export const HeaderSearchBarStye = styled.header`
         transition: all .3s;
         display: flex;
         margin-right: 10px;
+        cursor: pointer;
 
         &:hover{
             background-color: #ad825c;
