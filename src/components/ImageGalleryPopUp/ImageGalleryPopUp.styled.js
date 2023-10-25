@@ -10,6 +10,7 @@ export const ImageGalleryPopUpStyle = styled.div`
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10;
 
     .modal {
         position: relative;
@@ -17,7 +18,7 @@ export const ImageGalleryPopUpStyle = styled.div`
         max-height: calc(100% - 24px);
     }
 
-    .close-btn{
+    .popup__close{
         position: absolute;
         top: 20px;
         right: 20px;
@@ -36,9 +37,5 @@ export const ImageGalleryPopUpStyle = styled.div`
             transform: scale(1.2) rotate(90deg);
             transform-origin: center;
         }
-    }
-
-    .active{
-        display: block;
     }
 `

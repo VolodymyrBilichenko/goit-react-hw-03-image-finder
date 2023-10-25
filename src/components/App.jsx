@@ -40,7 +40,7 @@ export class App extends Component {
       this.setState({ isLoading: true });
       const data = await getAllImages(searchQuery, page, perPage);
       this.setState({ isLoading: false });
-      console.log(data);
+      
       if (page === 1) {
         this.setState({ images: data.hits });
       } else {
@@ -78,9 +78,13 @@ export class App extends Component {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
+  handleImageClick = (largeImageURL ) => {
+    this.setState({largeImageURL, showModal: true});
+  }
+
   toggleModal = () => {
-    this.setState(({ showModal }) => ({
-      showModal: !showModal,
+    this.setState((prevState) => ({
+      showModal: !prevState.showModal,
     }));
   };
 
@@ -88,10 +92,6 @@ export class App extends Component {
     this.setState({ showModal: false });
   };
 
-  handleImageClick = (largeImageURL ) => {
-    this.setState({largeImageURL, showModal: true});
-    this.toggleModal();
-  }
 
   render() {
     const { images, showNotFound, isLoading, showModal, largeImageURL } = this.state;
@@ -113,7 +113,7 @@ export class App extends Component {
             />
           )}
 
-          {
+          { 
             <ImageGalleryPopUp
               showModal={showModal}
               largeImageURL={largeImageURL}

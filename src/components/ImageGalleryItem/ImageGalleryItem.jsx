@@ -3,7 +3,6 @@ import { ImageGalleryItemStyle } from './ImageGalleryItem.styled';
 export const ImageGalleryItem = ({ id, webformatURL, tags, largeImageURL,  onImageClick}) => {
   const handleOpenPopUp = () =>{
     onImageClick(largeImageURL);
-    console.log(largeImageURL);
   }
 
   return (

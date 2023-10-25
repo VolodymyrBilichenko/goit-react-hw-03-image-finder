@@ -55,7 +55,7 @@ export class SearchBar extends Component {
               className="input"
               type="search"
               autoComplete="off"
-              placeholder="Search images and photos"
+              placeholder="Search images"
               onChange={this.handelInput}
               value={this.state.searchQuery}
             />
