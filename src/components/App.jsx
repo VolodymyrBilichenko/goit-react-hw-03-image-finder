@@ -21,7 +21,6 @@ export class App extends Component {
 
     isLoading: false,
     totalImages: 0,
-    showNotFound: false,
 
     largeImageURL: '',
     showModal: false,
@@ -48,12 +47,6 @@ export class App extends Component {
         this.setState((prevState) => ({
           images: [...prevState.images, ...data.hits],
         }));
-      }
-
-      if (data.hits.length === 0) {
-        this.setState({ showNotFound: true });
-      } else {
-        this.setState({ showNotFound: false });
       }
 
     } catch (error) {
