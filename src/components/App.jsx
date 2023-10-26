@@ -20,6 +20,7 @@ export class App extends Component {
     searchQuery: '',
 
     isLoading: false,
+    totalImages: 0,
     showNotFound: false,
 
     largeImageURL: '',
@@ -39,13 +40,13 @@ export class App extends Component {
     try {
       this.setState({ isLoading: true });
       const data = await getAllImages(searchQuery, page, perPage);
-      this.setState({ isLoading: false });
-      
+      this.setState({ isLoading: false, totalImages: data.totalHits });
+
       if (page === 1) {
         this.setState({ images: data.hits });
       } else {
-        this.setState(set => ({
-          images: [...set.images, ...data.hits],
+        this.setState((prevState) => ({
+          images: [...prevState.images, ...data.hits],
         }));
       }
 
@@ -54,6 +55,7 @@ export class App extends Component {
       } else {
         this.setState({ showNotFound: false });
       }
+
     } catch (error) {
       this.setState({ error: error.message, isLoading: false });
     }
@@ -71,6 +73,7 @@ export class App extends Component {
       searchQuery: searchQuery.toLowerCase().trim(),
       page: 1,
       images: [],
+      showNotFound: false,
     });
   };
 
@@ -94,7 +97,8 @@ export class App extends Component {
 
 
   render() {
-    const { images, showNotFound, isLoading, showModal, largeImageURL } = this.state;
+    const { images, totalImages, isLoading, showModal, largeImageURL } = this.state;
+    const totalImgLoaded = totalImages !== 0;
     return (
       <>
         <GlobalStyle />
@@ -104,9 +108,9 @@ export class App extends Component {
 
         <Container>
           <ImageGallery imagesLi={images} onImageClick={this.handleImageClick} />
-          {showNotFound && <NotFound />}
+          {totalImgLoaded && !images.length && <NotFound />}
 
-          {images.length > 0 && (
+          {images.length > 0 && images.length !== totalImages && (
             <LoadMore
               onClick={this.onLoadMore}
               isVisible={!this.state.isLoading}
